@@ -25,6 +25,7 @@ public class MainManager : MonoBehaviour
         LoadUsername();
     }
 
+
     [System.Serializable]
     class SaveData
     {

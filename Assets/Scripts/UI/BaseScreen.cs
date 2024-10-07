@@ -5,20 +5,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuUI : MonoBehaviour
+public class BaseScreen : MasterScreen
 {
     [SerializeField] private Text username;
-    private void Start()
-    {
-        username.text = "User: " + MainManager.Instance.myUsername.text;
-    }
-    private void Update()
-    {
 
+    protected override void Awake()
+    {
+        base.Awake();
     }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Main");
+        
+    }
+
+    public void ChangeUser()
+    {
+        menu.ChangeScreen(this.gameObject, menu.userScreen);
     }
 
     public void ExitGame()
