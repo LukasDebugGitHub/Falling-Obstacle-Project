@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -8,10 +9,16 @@ using UnityEngine.UI;
 public class BaseScreen : MasterScreen
 {
     [SerializeField] private Text username;
+    [SerializeField] private Text highscore;
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Update()
+    {
+        username.text = MainManager.Instance.saveUsername.text;
     }
 
     public void StartGame()

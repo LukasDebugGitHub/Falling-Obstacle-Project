@@ -14,8 +14,14 @@ public class UserScreen : MasterScreen
         base.Awake();
     }
 
+    public void CheckAndSave()
+    {
+        MainManager.Instance.SaveUsername();
+    }
+
     public void ReturnToMenu()
     {
+        MainManager.Instance.LoadUsername();
         menu.ChangeScreen(this.gameObject, menu.baseScreen);
     }
 }

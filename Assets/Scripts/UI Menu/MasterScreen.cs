@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MasterScreen : MonoBehaviour
 {
-
     protected MenuUIHandler menu;
 
     protected virtual void Awake()
