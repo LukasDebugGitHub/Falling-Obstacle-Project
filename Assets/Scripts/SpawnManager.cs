@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    private GameManager gameManagerScript;
+    [Header("Obstacle types")]
     [SerializeField] private GameObject[] fruits;
     [SerializeField] private GameObject spikeBall;
 
-    private float spawnTime = 1.5f;
-    private float spawnRepeatRate = 1.5f;
+    [Header("Spawn info")]
+    [SerializeField] private float spawnTime;
+    [SerializeField] private float spawnRepeatRate;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameManager gameManagerScript;
+    
+    private void Start()
     {
         gameManagerScript = FindAnyObjectByType<GameManager>();
 
         InvokeRepeating("ObstacleSpawner", spawnTime, spawnRepeatRate);
     }
 
-    void ObstacleSpawner()
+    private void ObstacleSpawner()
     {
         if (gameManagerScript.isGameOver != true && gameManagerScript.isGameStarted == true)
         {

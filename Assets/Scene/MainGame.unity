@@ -358,7 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4539ff51756985418e5f60b74ba2f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  moveSpeed: 18
+  xAxisBorder: 23
 --- !u!54 &145979416
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2187,6 +2188,8 @@ MonoBehaviour:
   - {fileID: 9060145359435028226, guid: 05ca6a77a60833c45b77a7f5e01e2f4f, type: 3}
   - {fileID: 9060145359435028226, guid: 0ebe4e3b1174e7c47b35cdac79a1cb2b, type: 3}
   spikeBall: {fileID: 9060145359435028226, guid: fedf89b2385e6654a97453dbe844d609, type: 3}
+  spawnTime: 1.5
+  spawnRepeatRate: 1.5
 --- !u!4 &1863338830
 Transform:
   m_ObjectHideFlags: 0
@@ -2336,7 +2339,7 @@ GameObject:
   - component: {fileID: 1899638123}
   - component: {fileID: 1899638122}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Main Game Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

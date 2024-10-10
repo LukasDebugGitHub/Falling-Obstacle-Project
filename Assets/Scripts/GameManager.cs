@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainGame");
     }
 
     public void GameFinished(int scoreValue)

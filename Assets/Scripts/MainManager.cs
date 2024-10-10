@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
-    public InputField saveUsername;
+    public int score;
 
     private void Awake()
     {
@@ -29,13 +29,13 @@ public class MainManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public string username;
+        public int score;
     }
 
     public void SaveUsername()
     {
         SaveData data = new SaveData();
-        data.username = saveUsername.text;
+        data.score = score;
 
         string json = JsonUtility.ToJson(data);
 
@@ -50,7 +50,7 @@ public class MainManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            saveUsername.text = data.username;
+            score = data.score;
         }
     }
 }

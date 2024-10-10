@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player info")]
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float xAxisBorder;
+
+
     private GameManager gameManagerScript;
 
     private Rigidbody rbPlayer;
-
-    [SerializeField] float speed = 12.0f;
 
     private void Start()
     {
         gameManagerScript = FindAnyObjectByType<GameManager>();
         rbPlayer = GetComponent<Rigidbody>();
     }
-    private void FixedUpdate()
+
+    private void Update()
     {
         if (gameManagerScript.isGameOver != true && gameManagerScript.isGameStarted == true)
         {
-            // Horizontal Input Control
-            Vector3 horizontalInput = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-
-            rbPlayer.MovePosition(transform.position + horizontalInput * Time.deltaTime * speed);
+            MoveController();
+            AxisBorder();
         }
     }
-    void Update()
-    {
-        float xAxisBorder = 23.0f;
 
-        // Border on the z Axis
+    private void MoveController()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        rbPlayer.velocity = Vector3.right * horizontalInput * moveSpeed;
+    }
+
+    private void AxisBorder()
+    {
+        // Border on the x Axis
         if (transform.position.x > xAxisBorder)
         {
             transform.position = new Vector3(xAxisBorder, transform.position.y, transform.position.z);
@@ -38,6 +46,6 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x < -xAxisBorder)
         {
             transform.position = new Vector3(-xAxisBorder, transform.position.y, transform.position.z);
-        }  
+        }
     }
 }
