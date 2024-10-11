@@ -10,11 +10,12 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     [Header("Screen Info")]
-    [SerializeField] private GameObject restartGame;
     [SerializeField] private GameObject title;
+    [SerializeField] private GameObject playerInfo;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject gameSucceed;
-    [SerializeField] private Text finalScoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
 
     [Header("Player Info")]
     [SerializeField] private Text liveText;
@@ -28,15 +29,25 @@ public class GameManager : MonoBehaviour
     private int scoreValue = 0;
     private bool isTimerOn;
 
+    private int highscore;
+
     public bool isGameOn { get; private set; }
+
+    private void Awake()
+    {
+        highscore = MainManager.Instance.score;
+
+        #region Active Screen UI
+        title.gameObject.SetActive(true);
+        playerInfo.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        gameSucceed.gameObject.SetActive(false);
+        #endregion
+    }
 
     private void Start()
     {
         isGameOn = false;
-        
-        restartGame.gameObject.SetActive(false);
-        gameOver.gameObject.SetActive(false);
-        gameSucceed.gameObject.SetActive(false);
     }
 
     public void StartOfTheGame()
@@ -44,6 +55,8 @@ public class GameManager : MonoBehaviour
         // Game starts
         isGameOn = true;
         isTimerOn = true;
+
+        playerInfo.gameObject.SetActive(true);
     }
 
     public void ExitGame()
@@ -62,21 +75,35 @@ public class GameManager : MonoBehaviour
         isGameOn = false;
 
         gameOver.gameObject.SetActive(true);
-        restartGame.gameObject.SetActive(true);
     }
 
-    public void GameFinished(int scoreValue)
+    public void GameFinished()
     {
         // Game won
         isGameOn = false;
 
         gameSucceed.gameObject.SetActive(true);
-        restartGame.gameObject.SetActive(true);
 
         finalScoreText.text = "Final Score: " + scoreValue;
+
+        SetHighscore();
+
+        MainManager.Instance.SaveUsername();
     }
 
-
+    private void SetHighscore()
+    {   
+        if (highscore < scoreValue)     // New Highscore, save the highsore to MainManager
+        {
+            highscore = scoreValue;
+            highscoreText.text = "New Highscore: " + highscore;
+            MainManager.Instance.score = highscore;
+        }
+        else if (highscore >= scoreValue)   // Current Highscore, if the old one was not beaten
+        {
+            highscoreText.text = "Highscore: " + highscore;
+        }
+    }
 
     public void Score(Collider other)
     {
@@ -133,7 +160,7 @@ public class GameManager : MonoBehaviour
                 // Time is up
                 timerValue = 0;
                 isTimerOn = false;
-                GameFinished(scoreValue);
+                GameFinished();
             }
         }
     }
