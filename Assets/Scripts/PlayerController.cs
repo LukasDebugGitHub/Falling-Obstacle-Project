@@ -21,11 +21,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (gameManagerScript.isGameOver != true && gameManagerScript.isGameStarted == true)
+        if (gameManagerScript.isGameOn)
         {
             MoveController();
             AxisBorder();
-        }
+
+            gameManagerScript.Timer();
+        }else
+            rbPlayer.velocity = Vector3.zero;
     }
 
     private void MoveController()
@@ -47,5 +50,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(-xAxisBorder, transform.position.y, transform.position.z);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameManagerScript.isGameOn)
+            gameManagerScript.Score(other);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (gameManagerScript.isGameOn)
+            gameManagerScript.Live(collision);
     }
 }

@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
 
     private void ObstacleSpawner()
     {
-        if (gameManagerScript.isGameOver != true && gameManagerScript.isGameStarted == true)
+        if (gameManagerScript.isGameOn)
         {
             float yHeight = 35.0f;
             float xRange = 23.0f;
