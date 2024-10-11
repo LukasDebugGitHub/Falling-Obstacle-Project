@@ -1,22 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private string mainGameName;
+    [SerializeField] private TextMeshProUGUI usernameText;
 
-    public void StartMainGame()
+    private void Update()
     {
-        SceneManager.LoadScene(mainGameName);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-
-        EditorApplication.ExitPlaymode();
+        usernameText.text = "User: " + MainManager.Instance.username;
     }
 }

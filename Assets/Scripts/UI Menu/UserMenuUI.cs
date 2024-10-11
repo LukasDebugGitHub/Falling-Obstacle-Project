@@ -6,4 +6,11 @@ using UnityEngine;
 public class UserMenuUI : MonoBehaviour
 {
     [SerializeField] private TMP_InputField userInputField;
+
+    public void SaveUser()
+    {
+        MainManager.Instance.username = userInputField.text;
+
+        MainManager.Instance.SaveUsername();
+    }
 }

@@ -44,12 +44,12 @@ public class MainManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        File.WriteAllText(Application.persistentDataPath + $"/savefile{data.username}.json", json);
     }
 
     public void LoadUsername()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + $"/savefile{username}.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
