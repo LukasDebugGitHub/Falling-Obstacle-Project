@@ -11,6 +11,8 @@ public class MainManager : MonoBehaviour
     public string username;
     public int score;
 
+    public float musicVolume;
+
     private void Awake()
     {
         Debug.Log(Application.persistentDataPath);
@@ -34,6 +36,8 @@ public class MainManager : MonoBehaviour
     {
         public string username;
         public int score;
+
+        public float musicVolume;
     }
 
     public void SaveUsername()
@@ -42,9 +46,13 @@ public class MainManager : MonoBehaviour
         data.username = username;
         data.score = score;
 
+        data.musicVolume = musicVolume;
+
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + $"/savefile{data.username}.json", json);
+
+
     }
 
     public void LoadUsername()
@@ -57,6 +65,8 @@ public class MainManager : MonoBehaviour
 
             username = data.username;
             score = data.score;
+
+            musicVolume = data.musicVolume;
         }
     }
 }

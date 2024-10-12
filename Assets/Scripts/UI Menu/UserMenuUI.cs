@@ -11,6 +11,7 @@ public class UserMenuUI : MonoBehaviour
     {
         MainManager.Instance.username = userInputField.text;
 
+        MainManager.Instance.LoadUsername();
         MainManager.Instance.SaveUsername();
     }
 }
