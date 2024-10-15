@@ -5,12 +5,28 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [Header("Player Data")]
     [SerializeField] private TextMeshProUGUI usernameText;
     [SerializeField] private TextMeshProUGUI highscoreText;
+
+    [Header("Settings Data")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] private VolumeSettings volumeSettings;
+
+
+    private void Start()
+    {
+        volumeSettings.VolumeData();
+    }
 
     private void Update()
     {
         usernameText.text = "User: " + MainManager.Instance.username;
         highscoreText.text = "Highscore: " + MainManager.Instance.score;
+    }
+
+    public void ButtonClickSound()
+    {
+        audioManager.PlaySFX(audioManager.buttonClick);
     }
 }

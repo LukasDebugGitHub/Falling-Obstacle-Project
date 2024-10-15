@@ -11,7 +11,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider SFXSlider;
 
-    private void Start()
+    public void VolumeData()
     {
         if (PlayerPrefs.HasKey("musicVolume"))
         {
@@ -24,6 +24,8 @@ public class VolumeSettings : MonoBehaviour
             SetSFXVolume();
         }
     }
+
+
     public void SetMasterVolume()
     {
         float volume = masterSlider.value;
