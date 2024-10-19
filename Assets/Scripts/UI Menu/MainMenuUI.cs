@@ -10,7 +10,6 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highscoreText;
 
     [Header("Settings Data")]
-    [SerializeField] AudioManager audioManager;
     [SerializeField] private VolumeSettings volumeSettings;
 
 
@@ -27,6 +26,6 @@ public class MainMenuUI : MonoBehaviour
 
     public void ButtonClickSound()
     {
-        audioManager.PlaySFX(audioManager.buttonClick);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
 }
